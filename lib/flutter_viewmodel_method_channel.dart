@@ -11,7 +11,6 @@ class MethodChannelFlutterViewmodel extends FlutterViewmodelPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+    return "0.0.1";
   }
 }
