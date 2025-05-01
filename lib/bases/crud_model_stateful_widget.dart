@@ -14,7 +14,8 @@ abstract class CrudModelStatefulWidget<M> extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _CrudModelStatefulWidget();
 
-  Widget build(BuildContext context);
+  Widget build(BuildContext context) => generateTemplate(context, data);
+  Widget generateTemplate(BuildContext context, M? data);
 }
 
 class _CrudModelStatefulWidget<M>
@@ -28,6 +29,8 @@ class _CrudModelStatefulWidget<M>
 
 class _CrudModelViewModel<M> extends ViewModel<_CrudModel<M>> {
   RepositoryProvider<CrudRepository<M>> provider;
+
+  CrudRepository<M> get repository => model.repository;
 
   _CrudModelViewModel(super.notifier, this.provider);
 

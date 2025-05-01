@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_viewmodel/bases/crud_model_stateful_widget.dart';
 import 'package:flutter_viewmodel/bases/crud_repository.dart';
 import 'package:flutter_viewmodel/bases/crud_repository_factory.dart';
-import 'package:flutter_viewmodel/bases/repository_provider.dart';
 import 'package:flutter_viewmodel/flutter_viewmodel.dart';
 
 void main() {
@@ -101,23 +99,6 @@ class TestDataCrudAppRepository extends CrudRepository<TestData> {
   @override
   TestData update(CrudRepositoryFactory<TestData> factory) {
     // TODO: implement update
-    throw UnimplementedError();
-  }
-}
-
-final testDataCrudRepositoryProvider =
-    RepositoryProvider<CrudRepository<TestData>>(
-        () => TestDataCrudAppRepository());
-
-class TestDataCrudModelStatefulWidget
-    extends CrudModelStatefulWidget<TestData> {
-  const TestDataCrudModelStatefulWidget(testDataCrudRepositoryProvider,
-      {super.key, super.data})
-      : super(testDataCrudRepositoryProvider);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
     throw UnimplementedError();
   }
 }
