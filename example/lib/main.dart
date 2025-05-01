@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:flutter_viewmodel/bases/crud_model_stateful_widget.dart';
+import 'package:flutter_viewmodel/bases/crud_repository.dart';
+import 'package:flutter_viewmodel/bases/crud_repository_factory.dart';
+import 'package:flutter_viewmodel/bases/repository_provider.dart';
 import 'package:flutter_viewmodel/flutter_viewmodel.dart';
 
 void main() {
@@ -31,8 +35,8 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _flutterViewmodelPlugin.getPlatformVersion() ?? 'Unknown platform version';
+      platformVersion = await _flutterViewmodelPlugin.getPlatformVersion() ??
+          'Unknown platform version';
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
@@ -59,5 +63,61 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+}
+
+final class TestData {
+  final int id;
+  final String name;
+
+  TestData({required this.id, required this.name});
+}
+
+class TestDataCrudAppRepository extends CrudRepository<TestData> {
+  @override
+  TestData create(CrudRepositoryFactory<TestData> factory) {
+    // TODO: implement create
+    throw UnimplementedError();
+  }
+
+  @override
+  TestData delete(CrudRepositoryFactory<TestData> factory) {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
+  @override
+  List<TestData> fetch(CrudRepositoryFactory<TestData> factory) {
+    // TODO: implement fetch
+    throw UnimplementedError();
+  }
+
+  @override
+  List<TestData> fetchItem(CrudRepositoryFactory<TestData> factory) {
+    // TODO: implement fetchItem
+    throw UnimplementedError();
+  }
+
+  @override
+  TestData update(CrudRepositoryFactory<TestData> factory) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
+}
+
+final testDataCrudRepositoryProvider =
+    RepositoryProvider<CrudRepository<TestData>>(
+        () => TestDataCrudAppRepository());
+
+class TestDataCrudModelStatefulWidget
+    extends CrudModelStatefulWidget<TestData> {
+  const TestDataCrudModelStatefulWidget(testDataCrudRepositoryProvider,
+      {super.key, super.data})
+      : super(testDataCrudRepositoryProvider);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
