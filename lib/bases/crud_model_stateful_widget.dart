@@ -8,37 +8,31 @@ import 'package:flutter_viewmodel/bases/view_model_state.dart';
 
 abstract class CrudModelStatefulWidget<M> extends StatefulWidget {
   final M? data;
-  final RepositoryProvider<CrudRepository<M>> provider;
-  const CrudModelStatefulWidget(this.provider, {super.key, this.data});
-
-  @override
-  State<StatefulWidget> createState() => _CrudModelStatefulWidget();
-
-  Widget build(BuildContext context) => generateTemplate(context, data);
-  Widget generateTemplate(BuildContext context, M? data);
+  const CrudModelStatefulWidget({super.key, this.data});
 }
 
-class _CrudModelStatefulWidget<M>
+abstract class _CrudModelStatefulWidget<M>
     extends ViewModelState<CrudModelStatefulWidget<M>, _CrudModelViewModel<M>> {
   @override
-  Widget build(BuildContext context) => widget.build(context);
+  createViewModel() =>
+      _CrudModelViewModel<M>(this, createRepository(), createModel(this));
 
-  @override
-  createViewModel() => _CrudModelViewModel<M>(this, widget.provider);
+  CrudModel<M> createModel(Notifier notifier);
+  RepositoryProvider<CrudRepository<M>> createRepository();
 }
 
-class _CrudModelViewModel<M> extends ViewModel<_CrudModel<M>> {
+class _CrudModelViewModel<M> extends ViewModel<CrudModel<M>> {
+  final CrudModel<M> targetModel;
   RepositoryProvider<CrudRepository<M>> provider;
 
   CrudRepository<M> get repository => model.repository;
 
-  _CrudModelViewModel(super.notifier, this.provider);
+  _CrudModelViewModel(super.notifier, this.provider, this.targetModel);
 
   @override
-  _CrudModel<M> createModel(Notifier notifier) =>
-      _CrudModel(notifier, provider);
+  CrudModel<M> createModel(Notifier notifier) => targetModel;
 }
 
-class _CrudModel<M> extends Model<CrudRepository<M>> {
-  _CrudModel(super.notifier, super.provider);
+class CrudModel<M> extends Model<CrudRepository<M>> {
+  CrudModel(super.notifier, super.provider);
 }
