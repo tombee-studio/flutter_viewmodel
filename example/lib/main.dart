@@ -73,31 +73,31 @@ final class TestData {
 
 class TestDataCrudAppRepository extends CrudRepository<TestData> {
   @override
-  TestData create(CrudRepositoryFactory<TestData> factory) {
+  Future<TestData> create(CrudRepositoryFactory<TestData> factory) {
     // TODO: implement create
     throw UnimplementedError();
   }
 
   @override
-  TestData delete(CrudRepositoryFactory<TestData> factory) {
+  Future<TestData> delete(CrudRepositoryFactory<TestData> factory) {
     // TODO: implement delete
     throw UnimplementedError();
   }
 
   @override
-  List<TestData> fetch(CrudRepositoryFactory<TestData> factory) {
+  Future<List<TestData>> fetch(CrudRepositoryFactory<TestData> factory) {
     // TODO: implement fetch
     throw UnimplementedError();
   }
 
   @override
-  List<TestData> fetchItem(CrudRepositoryFactory<TestData> factory) {
+  Future<TestData> fetchItem(CrudRepositoryFactory<TestData> factory) {
     // TODO: implement fetchItem
     throw UnimplementedError();
   }
 
   @override
-  TestData update(CrudRepositoryFactory<TestData> factory) {
+  Future<TestData> update(CrudRepositoryFactory<TestData> factory) {
     // TODO: implement update
     throw UnimplementedError();
   }

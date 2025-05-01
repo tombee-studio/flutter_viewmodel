@@ -1,1 +1,3 @@
-abstract class CrudRepositoryFactory<M> {}
+abstract class CrudRepositoryFactory<M> {
+  M generate();
+}
