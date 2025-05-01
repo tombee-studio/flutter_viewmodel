@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:flutter_viewmodel/bases/crud_repository.dart';
-import 'package:flutter_viewmodel/bases/crud_repository_factory.dart';
 import 'package:flutter_viewmodel/flutter_viewmodel.dart';
 
 void main() {
@@ -69,36 +67,4 @@ final class TestData {
   final String name;
 
   TestData({required this.id, required this.name});
-}
-
-class TestDataCrudAppRepository extends CrudRepository<TestData> {
-  @override
-  Future<TestData> create(CrudRepositoryFactory<TestData> factory) {
-    // TODO: implement create
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<TestData> delete(CrudRepositoryFactory<TestData> factory) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<TestData>> fetch(CrudRepositoryFactory<TestData> factory) {
-    // TODO: implement fetch
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<TestData> fetchItem(CrudRepositoryFactory<TestData> factory) {
-    // TODO: implement fetchItem
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<TestData> update(CrudRepositoryFactory<TestData> factory) {
-    // TODO: implement update
-    throw UnimplementedError();
-  }
 }

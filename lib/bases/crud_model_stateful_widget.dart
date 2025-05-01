@@ -11,28 +11,28 @@ abstract class CrudModelStatefulWidget<M> extends StatefulWidget {
   const CrudModelStatefulWidget({super.key, this.data});
 }
 
-abstract class CrudModelStatefulWidgetState<M>
-    extends ViewModelState<CrudModelStatefulWidget<M>, _CrudModelViewModel<M>> {
+abstract class CrudModelStatefulWidgetState<M, C> extends ViewModelState<
+    CrudModelStatefulWidget<M>, _CrudModelViewModel<M, C>> {
   @override
   createViewModel() =>
-      _CrudModelViewModel<M>(this, createRepository(), createModel(this));
+      _CrudModelViewModel<M, C>(this, createRepository(), createModel(this));
 
-  CrudModel<M> createModel(Notifier notifier);
-  RepositoryProvider<CrudRepository<M>> createRepository();
+  CrudModel<M, C> createModel(Notifier notifier);
+  RepositoryProvider<CrudRepository<M, C>> createRepository();
 }
 
-class _CrudModelViewModel<M> extends ViewModel<CrudModel<M>> {
-  final CrudModel<M> targetModel;
-  RepositoryProvider<CrudRepository<M>> provider;
+class _CrudModelViewModel<M, C> extends ViewModel<CrudModel<M, C>> {
+  final CrudModel<M, C> targetModel;
+  RepositoryProvider<CrudRepository<M, C>> provider;
 
-  CrudRepository<M> get repository => model.repository;
+  CrudRepository<M, C> get repository => model.repository;
 
   _CrudModelViewModel(super.notifier, this.provider, this.targetModel);
 
   @override
-  CrudModel<M> createModel(Notifier notifier) => targetModel;
+  CrudModel<M, C> createModel(Notifier notifier) => targetModel;
 }
 
-class CrudModel<M> extends Model<CrudRepository<M>> {
+class CrudModel<M, C> extends Model<CrudRepository<M, C>> {
   CrudModel(super.notifier, super.provider);
 }
