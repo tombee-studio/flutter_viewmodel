@@ -11,7 +11,7 @@ abstract class CrudModelStatefulWidget<M> extends StatefulWidget {
   const CrudModelStatefulWidget({super.key, this.data});
 }
 
-abstract class _CrudModelStatefulWidget<M>
+abstract class CrudModelStatefulWidgetState<M>
     extends ViewModelState<CrudModelStatefulWidget<M>, _CrudModelViewModel<M>> {
   @override
   createViewModel() =>
