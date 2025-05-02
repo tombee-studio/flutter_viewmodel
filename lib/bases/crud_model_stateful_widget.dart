@@ -36,8 +36,8 @@ class _CrudModelViewModel<M, C> extends ViewModel<CrudModel<M, C>> {
     return model.create();
   }
 
-  Future<M> update() {
-    return model.update();
+  Future<M> update(int id) {
+    return model.update(id);
   }
 }
 
@@ -45,5 +45,5 @@ abstract class CrudModel<M, C> extends Model<CrudRepository<M, C>> {
   CrudModel(super.notifier, super.provider);
 
   Future<M> create();
-  Future<M> update();
+  Future<M> update(int id);
 }
