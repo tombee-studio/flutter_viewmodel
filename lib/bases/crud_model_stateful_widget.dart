@@ -32,11 +32,11 @@ class _CrudModelViewModel<M, C> extends ViewModel<CrudModel<M, C>> {
   @override
   CrudModel<M, C> createModel(Notifier notifier) => targetModel;
 
-  M create() {
+  Future<M> create() {
     return model.create();
   }
 
-  M update() {
+  Future<M> update() {
     return model.update();
   }
 }
@@ -44,6 +44,6 @@ class _CrudModelViewModel<M, C> extends ViewModel<CrudModel<M, C>> {
 abstract class CrudModel<M, C> extends Model<CrudRepository<M, C>> {
   CrudModel(super.notifier, super.provider);
 
-  create();
-  update();
+  Future<M> create();
+  Future<M> update();
 }
