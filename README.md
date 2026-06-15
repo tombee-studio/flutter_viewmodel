@@ -1,18 +1,15 @@
 # flutter_viewmodel
 
-A new Flutter plugin project.
+A Flutter package that introduces the ViewModel pattern for Flutter applications, inspired by Android's Architecture Components ViewModel. It provides a clean way to separate business logic from UI, manage state, and survive widget rebuilds.
+
+## Features
+
+- **ViewModel lifecycle management**: ViewModels are created once and persist across widget rebuilds.
+- **Automatic disposal**: ViewModels are disposed when they are no longer needed.
+- **Clean separation of concerns**: Keep business logic out of your widgets.
+- **Reactive UI updates**: Uses `ChangeNotifier` to notify widgets of state changes.
 
 ## Getting Started
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Add `flutter_viewmodel` to your `pubspec.yaml`:
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-The plugin project was generated without specifying the `--platforms` flag, no platforms are currently supported.
-To add platforms, run `flutter create -t plugin --platforms <platforms> .` in this directory.
-You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
