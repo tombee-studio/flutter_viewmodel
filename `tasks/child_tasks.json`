@@ -1,0 +1,54 @@
+{
+  "parent_task_id": 10,
+  "child_tasks": [
+    {
+      "id": 11,
+      "title": "プラットフォームサポートの追加",
+      "description": "flutter create -t plugin --platforms android,ios . を実行して、AndroidおよびiOSのプラットフォームサポートを追加する。",
+      "parent_task_id": 10,
+      "status": "pending"
+    },
+    {
+      "id": 12,
+      "title": "ViewModelコア機能の実装",
+      "description": "FlutterにViewModelパターンを導入するためのコアとなるViewModel機能を実装する。",
+      "parent_task_id": 10,
+      "status": "pending"
+    },
+    {
+      "id": 13,
+      "title": "テストの作成",
+      "description": "ViewModelプラグインのユニットテストおよびウィジェットテストを作成する。",
+      "parent_task_id": 10,
+      "status": "pending"
+    },
+    {
+      "id": 14,
+      "title": "APIドキュメントの整備",
+      "description": "プラグインの公開インターフェースに対するAPIドキュメントを作成する。",
+      "parent_task_id": 10,
+      "status": "pending"
+    },
+    {
+      "id": 15,
+      "title": "サンプルアプリの改善",
+      "description": "exampleアプリをViewModel機能を実際にデモンストレーションするように更新する。",
+      "parent_task_id": 10,
+      "status": "pending"
+    },
+    {
+      "id": 16,
+      "title": "pubspec.yamlの確認と依存関係の整備",
+      "description": "pubspec.yamlを確認し、必要な依存関係が正しく宣言されているかを確認・修正する。",
+      "parent_task_id": 10,
+      "status": "pending"
+    },
+    {
+      "id": 17,
+      "title": "CI/CD設定の追加",
+      "description": "自動テストとパブリッシュのためのCI/CD設定を追加する（GitHub Actionsなど）。",
+      "parent_task_id": 10,
+      "status": "pending"
+    }
+  ]
+}
