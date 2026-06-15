@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.1] - 2024-01-01
+## [0.0.1] - 2025-01-24
 
 ### Added
 - Initial release of `flutter_viewmodel` package.
