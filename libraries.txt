@@ -1,0 +1,20 @@
+# flutter_viewmodel - 使用ライブラリ一覧
+
+## 本番依存ライブラリ (dependencies)
+
+| ライブラリ名 | バージョン | 説明 |
+|-------------|-----------|------|
+| flutter (SDK) | >=3.0.0 | Flutter SDK本体 |
+
+## 開発用依存ライブラリ (dev_dependencies)
+
+| ライブラリ名 | バージョン | 説明 |
+|-------------|-----------|------|
+| flutter_test (SDK) | Flutter SDK付属 | Flutterテストフレームワーク |
+| flutter_lints | ^3.0.0 | Flutterの推奨Lintルール集 |
+
+## 備考
+
+- このプロジェクトはFlutter/Dartパッケージです。
+- 依存関係の詳細は `pubspec.yaml` を参照してください。
+- パッケージの取得には `flutter pub get` を実行してください。

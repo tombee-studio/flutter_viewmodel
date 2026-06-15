@@ -1,0 +1,2 @@
+# This is a Flutter/Dart project, not a Python project.
+# For Flutter dependencies, please refer to pubspec.yaml
