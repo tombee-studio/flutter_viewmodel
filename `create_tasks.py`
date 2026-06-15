@@ -1,0 +1,93 @@
+"""
+Script to create tasks in the Django task-management project.
+All tasks have the 'enhancement' tag.
+"""
+
+import os
+import django
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'task_management.settings')
+django.setup()
+
+from tasks.models import Task, Tag  # noqa: E402
+
+def create_tasks():
+    # Get or create the 'enhancement' tag
+    enhancement_tag, _ = Tag.objects.get_or_create(name='enhancement')
+
+    tasks_data = [
+        {
+            'title': 'プラットフォームサポートの追加',
+            'description': (
+                '現在、プラットフォームフラグなしで生成されたため、'
+                'AndroidおよびiOSのプラットフォームサポートを追加する必要がある。\n'
+                '`flutter create -t plugin --platforms android,ios .` を実行してプラットフォームを追加する。'
+            ),
+        },
+        {
+            'title': 'ViewModelの基本実装',
+            'description': (
+                'FlutterのViewModelパターンの基本実装を作成する。'
+                'ChangeNotifierを使用したViewModelベースクラスを実装する。'
+            ),
+        },
+        {
+            'title': 'テストの追加',
+            'description': (
+                'ViewModelの単体テストを追加する。'
+                'WidgetTestおよびUnitTestのカバレッジを確保する。'
+            ),
+        },
+        {
+            'title': 'サンプルアプリの実装',
+            'description': (
+                'example/ディレクトリにあるサンプルアプリにViewModelの使用例を実装する。'
+                'カウンターアプリをViewModelパターンで実装する例を追加する。'
+            ),
+        },
+        {
+            'title': 'ドキュメントの整備',
+            'description': (
+                'READMEにViewModelの使い方、APIリファレンス、サンプルコードを追加する。'
+                'dartdocコメントをすべてのpublicなクラスとメソッドに追加する。'
+            ),
+        },
+        {
+            'title': 'CI/CDパイプラインの構築',
+            'description': (
+                'GitHub ActionsなどのCI/CDパイプラインを構築し、'
+                '自動テストおよびパブリッシュを設定する。'
+            ),
+        },
+        {
+            'title': 'pubspec.yamlの整備',
+            'description': (
+                'pubspec.yamlに適切な依存関係、説明、ホームページURLなどを追加する。'
+                'pub.devへの公開に必要な情報を整備する。'
+            ),
+        },
+        {
+            'title': 'CHANGELOGの更新フロー整備',
+            'description': (
+                'バージョン管理とCHANGELOGの更新フローを整備する。'
+                'セマンティックバージョニングを導入する。'
+            ),
+        },
+    ]
+
+    for task_data in tasks_data:
+        task, created = Task.objects.get_or_create(
+            title=task_data['title'],
+            defaults={'description': task_data['description']}
+        )
+        task.tags.add(enhancement_tag)
+        task.save()
+
+        if created:
+            print(f"Created task: {task.title}")
+        else:
+            print(f"Task already exists: {task.title}")
+
+if __name__ == '__main__':
+    create_tasks()
+    print("Done!")

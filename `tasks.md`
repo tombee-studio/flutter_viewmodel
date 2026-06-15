@@ -1,0 +1,37 @@
+# Task List for flutter_viewmodel
+
+## Tasks to be created
+
+All tasks should have the `enhancement` tag.
+
+### Task 1: プラットフォームサポートの追加
+- **Tag**: enhancement
+- **Description**: 現在、プラットフォームフラグなしで生成されたため、AndroidおよびiOSのプラットフォームサポートを追加する必要がある。`flutter create -t plugin --platforms android,ios .` を実行してプラットフォームを追加する。
+
+### Task 2: ViewModelの基本実装
+- **Tag**: enhancement
+- **Description**: FlutterのViewModelパターンの基本実装を作成する。ChangeNotifierを使用したViewModelベースクラスを実装する。
+
+### Task 3: テストの追加
+- **Tag**: enhancement
+- **Description**: ViewModelの単体テストを追加する。WidgetTestおよびUnitTestのカバレッジを確保する。
+
+### Task 4: サンプルアプリの実装
+- **Tag**: enhancement
+- **Description**: example/ディレクトリにあるサンプルアプリにViewModelの使用例を実装する。
+
+### Task 5: ドキュメントの整備
+- **Tag**: enhancement
+- **Description**: READMEにViewModelの使い方、APIリファレンス、サンプルコードを追加する。
+
+### Task 6: CI/CDパイプラインの構築
+- **Tag**: enhancement
+- **Description**: GitHub ActionsなどのCI/CDパイプラインを構築し、自動テストおよびパブリッシュを設定する。
+
+### Task 7: pubspec.yamlの整備
+- **Tag**: enhancement
+- **Description**: pubspec.yamlに適切な依存関係、説明、ホームページURLなどを追加する。
+
+### Task 8: CHANGELOGの更新フロー整備
+- **Tag**: enhancement
+- **Description**: バージョン管理とCHANGELOGの更新フローを整備する。セマンティックバージョニングを導入する。
