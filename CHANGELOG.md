@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Comprehensive unit tests for `ViewModel` base class covering state management, lifecycle, and listener behavior.
+- Widget integration tests for `ViewModelProvider` including provision and disposal behavior.
+- Widget integration tests for `ViewModelBuilder` covering initial render and reactive rebuilds.
+- ViewModel lifecycle tests covering `init` and `dispose` integration with Flutter widget tree.
+
 ## [0.0.1] - 2025-01-24
 
 ### Added
