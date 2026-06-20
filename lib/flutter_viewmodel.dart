@@ -1,14 +1,5 @@
-// You have generated a new plugin project without specifying the `--platforms`
-// flag. A plugin project with no platform support was generated. To add a
-// platform, run `flutter create -t plugin --platforms <platforms> .` under the
-// same directory. You can also find a detailed instruction on how to add
-// platforms in the `pubspec.yaml` at
-// https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
+library flutter_viewmodel;
 
-import 'flutter_viewmodel_platform_interface.dart';
-
-class FlutterViewmodel {
-  Future<String?> getPlatformVersion() {
-    return FlutterViewmodelPlatform.instance.getPlatformVersion();
-  }
-}
+export 'src/view_model.dart';
+export 'src/view_model_provider.dart';
+export 'src/view_model_builder.dart';

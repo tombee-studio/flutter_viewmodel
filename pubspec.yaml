@@ -1,7 +1,7 @@
 name: flutter_viewmodel
 description: A Flutter package that introduces the ViewModel pattern for Flutter applications.
 version: 0.0.1
-homepage: https://github.com/tombee-studio/flutter_viewmodel
+homepage: https://github.com/your-org/flutter_viewmodel
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
