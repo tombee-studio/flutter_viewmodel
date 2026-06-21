@@ -23,7 +23,7 @@ abstract class FlutterViewmodelPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<String?> getPlatformVersion() async {
+    return "0.0.1";
   }
 }

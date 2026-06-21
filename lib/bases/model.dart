@@ -12,11 +12,11 @@ abstract class Model<T extends Repository> {
 
   T get repository => _provider.repository;
 
-  Property<T> propertyOf(T initial) {
+  Property<U> propertyOf<U>(U initial) {
     return Property(initial, _notifier);
   }
 
-  ListProperty<T> listPropertyOf(List<T> initial) {
+  ListProperty<U> listPropertyOf<U>(List<U> initial) {
     return ListProperty(initial, _notifier);
   }
 }
