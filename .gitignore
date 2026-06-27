@@ -64,3 +64,8 @@ venv.bak/
 # OS files
 .DS_Store
 Thumbs.db
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json

@@ -10,7 +10,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9"
 authors = [
-    { name = "Task Management Maintainers" },
+    { name = "task-management contributors" },
 ]
 keywords = ["django", "task", "management", "tasks", "todo"]
 classifiers = [
@@ -33,6 +33,12 @@ dependencies = [
     "Django>=4.2,<5.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/your-org/task-management"
+Repository = "https://github.com/your-org/task-management"
+Changelog = "https://github.com/your-org/task-management/blob/main/CHANGELOG.md"
+Issues = "https://github.com/your-org/task-management/issues"
+
 [project.optional-dependencies]
 dev = [
     "build",
@@ -41,14 +47,5 @@ dev = [
     "pytest-django",
 ]
 
-[project.urls]
-Homepage = "https://github.com/your-org/task-management"
-Documentation = "https://github.com/your-org/task-management#readme"
-Repository = "https://github.com/your-org/task-management"
-Changelog = "https://github.com/your-org/task-management/blob/main/CHANGELOG.md"
-
 [tool.setuptools.packages.find]
 include = ["task_management*"]
-
-[tool.setuptools.package-data]
-task_management = ["py.typed"]
