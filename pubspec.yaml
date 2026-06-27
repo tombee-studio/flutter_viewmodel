@@ -1,13 +1,13 @@
 name: flutter_viewmodel
-description: A Flutter package that introduces the ViewModel pattern for Flutter applications, inspired by Android's Architecture Components ViewModel.
+description: A Flutter package that introduces the ViewModel pattern for Flutter applications, providing a clean way to separate business logic from UI, manage state, and survive widget rebuilds.
 version: 0.0.1
 homepage: https://github.com/tombee-studio/flutter_viewmodel
 repository: https://github.com/tombee-studio/flutter_viewmodel
 issue_tracker: https://github.com/tombee-studio/flutter_viewmodel/issues
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
-  flutter: '>=3.0.0'
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
 
 dependencies:
   flutter:
