@@ -2,21 +2,28 @@ import 'package:flutter/foundation.dart';
 
 /// Base class for all ViewModels.
 ///
-/// A ViewModel is responsible for managing the UI state and business logic
-/// for a specific part of the UI. It extends [ChangeNotifier] to provide
-/// reactive state management.
+/// A [ViewModel] manages UI state and business logic separately from
+/// Flutter widgets. It extends [ChangeNotifier] so that widgets can react
+/// to state changes.
 abstract class ViewModel extends ChangeNotifier {
-  /// Called when the ViewModel is first created and attached to a widget.
-  ///
-  /// Override this method to perform initialization logic.
-  void init() {}
+  bool _initialized = false;
+  bool _disposed = false;
 
-  /// Called when the ViewModel is disposed.
-  ///
-  /// Override this method to perform cleanup logic. Always call [super.dispose()]
-  /// when overriding.
+  /// Whether [init] has already been called.
+  bool get initialized => _initialized;
+
+  /// Whether this ViewModel has been disposed.
+  bool get isDisposed => _disposed;
+
+  /// Called once when the ViewModel is first created and attached to the
+  /// widget tree.
+  void init() {
+    _initialized = true;
+  }
+
   @override
   void dispose() {
+    _disposed = true;
     super.dispose();
   }
 }
