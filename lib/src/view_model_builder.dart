@@ -1,32 +1,35 @@
 import 'package:flutter/widgets.dart';
+
 import 'view_model.dart';
 import 'view_model_provider.dart';
 
+/// Signature for building a widget from a [ViewModel].
+typedef ViewModelWidgetBuilder<T extends ViewModel> = Widget Function(
+  BuildContext context,
+  T viewModel,
+  Widget? child,
+);
+
 /// A widget that rebuilds in response to [ViewModel] state changes.
 ///
-/// [ViewModelBuilder] listens to the [ViewModel] provided by the nearest
-/// [ViewModelProvider] ancestor and rebuilds its subtree whenever the
-/// [ViewModel] notifies its listeners.
+/// The [ViewModel] is obtained from the nearest [ViewModelProvider] of type
+/// [T] unless an explicit [viewModel] is provided.
 class ViewModelBuilder<T extends ViewModel> extends StatefulWidget {
-  /// Creates a [ViewModelBuilder].
-  ///
-  /// The [builder] function is called whenever the [ViewModel] notifies
-  /// its listeners.
-  ///
-  /// The optional [child] widget is passed to the [builder] function and
-  /// can be used for parts of the widget tree that do not depend on the
-  /// [ViewModel] state, improving performance by avoiding unnecessary rebuilds.
   const ViewModelBuilder({
-    super.key,
+    Key? key,
     required this.builder,
+    this.viewModel,
     this.child,
-  });
+  }) : super(key: key);
 
-  /// A builder function that creates the widget tree based on the [ViewModel] state.
-  final Widget Function(BuildContext context, T viewModel, Widget? child)
-      builder;
+  /// Builds the widget tree using the current [ViewModel] state.
+  final ViewModelWidgetBuilder<T> builder;
 
-  /// An optional widget that is passed to the [builder] function.
+  /// An optional explicit [ViewModel]. When null, the [ViewModel] is read from
+  /// the nearest [ViewModelProvider].
+  final T? viewModel;
+
+  /// An optional child that does not depend on the [ViewModel] state.
   final Widget? child;
 
   @override
@@ -37,29 +40,54 @@ class _ViewModelBuilderState<T extends ViewModel>
     extends State<ViewModelBuilder<T>> {
   T? _viewModel;
 
+  T _resolveViewModel() {
+    return widget.viewModel ?? ViewModelProvider.of<T>(context);
+  }
+
+  void _onChanged() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void _subscribe(T viewModel) {
+    _viewModel = viewModel;
+    _viewModel!.addListener(_onChanged);
+  }
+
+  void _unsubscribe() {
+    _viewModel?.removeListener(_onChanged);
+    _viewModel = null;
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final newViewModel = ViewModelProvider.of<T>(context);
-    if (_viewModel != newViewModel) {
-      _viewModel?.removeListener(_onViewModelChanged);
-      _viewModel = newViewModel;
-      _viewModel?.addListener(_onViewModelChanged);
+    final resolved = _resolveViewModel();
+    if (!identical(resolved, _viewModel)) {
+      _unsubscribe();
+      _subscribe(resolved);
+    }
+  }
+
+  @override
+  void didUpdateWidget(ViewModelBuilder<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final resolved = _resolveViewModel();
+    if (!identical(resolved, _viewModel)) {
+      _unsubscribe();
+      _subscribe(resolved);
     }
   }
 
   @override
   void dispose() {
-    _viewModel?.removeListener(_onViewModelChanged);
+    _unsubscribe();
     super.dispose();
-  }
-
-  void _onViewModelChanged() {
-    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(context, _viewModel as T, widget.child);
+    return widget.builder(context, _viewModel!, widget.child);
   }
 }

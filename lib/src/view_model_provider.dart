@@ -1,50 +1,36 @@
 import 'package:flutter/widgets.dart';
+
 import 'view_model.dart';
 
-/// An [InheritedWidget] that provides a [ViewModel] to its subtree.
+/// Signature for a function that creates a [ViewModel].
+typedef ViewModelCreate<T extends ViewModel> = T Function(BuildContext context);
+
+/// A widget that creates a [ViewModel] and supplies it to the widget subtree.
 ///
-/// Use [ViewModelProvider.of] to retrieve the [ViewModel] from the subtree.
+/// The [ViewModel] is created once and persists across widget rebuilds. It is
+/// automatically disposed when this widget is removed from the tree.
 class ViewModelProvider<T extends ViewModel> extends StatefulWidget {
-  /// Creates a [ViewModelProvider].
-  ///
-  /// The [create] function is called once to create the [ViewModel].
-  /// The [child] is the widget subtree that can access the [ViewModel].
   const ViewModelProvider({
-    super.key,
+    Key? key,
     required this.create,
     required this.child,
-  });
+  }) : super(key: key);
 
-  /// A function that creates the [ViewModel].
-  final T Function() create;
+  /// Creates the [ViewModel] instance to be provided.
+  final ViewModelCreate<T> create;
 
-  /// The widget subtree that can access the [ViewModel].
+  /// The widget below this widget in the tree.
   final Widget child;
 
-  /// Retrieves the [ViewModel] of type [T] from the nearest [ViewModelProvider]
-  /// ancestor in the widget tree.
-  ///
-  /// If [listen] is true (the default), the calling widget will rebuild
-  /// whenever the [ViewModel] notifies its listeners.
-  ///
-  /// Throws a [FlutterError] if no [ViewModelProvider] of type [T] is found.
-  static T? of<T extends ViewModel>(BuildContext context,
-      {bool listen = true}) {
-    final provider = listen
-        ? context
-            .dependOnInheritedWidgetOfExactType<_ViewModelInheritedWidget<T>>()
-        : context
-            .findAncestorWidgetOfExactType<_ViewModelInheritedWidget<T>>();
-
-    if (provider == null) {
-      throw FlutterError(
-        'ViewModelProvider.of<$T> called with a context that does not contain a ViewModelProvider<$T>.\n'
-        'No ViewModelProvider<$T> ancestor could be found starting from the context that was passed to ViewModelProvider.of<$T>.\n'
-        'Make sure that the context you are using to retrieve the ViewModel is a descendant of a ViewModelProvider<$T> widget.',
-      );
-    }
-
-    return provider.viewModel;
+  /// Obtains the nearest [ViewModel] of type [T] up the widget tree.
+  static T of<T extends ViewModel>(BuildContext context) {
+    final inherited =
+        context.dependOnInheritedWidgetOfExactType<_ViewModelScope<T>>();
+    assert(
+      inherited != null,
+      'No ViewModelProvider<$T> found in context.',
+    );
+    return inherited!.viewModel;
   }
 
   @override
@@ -53,12 +39,12 @@ class ViewModelProvider<T extends ViewModel> extends StatefulWidget {
 
 class _ViewModelProviderState<T extends ViewModel>
     extends State<ViewModelProvider<T>> {
-  late T _viewModel;
+  late final T _viewModel;
 
   @override
   void initState() {
     super.initState();
-    _viewModel = widget.create();
+    _viewModel = widget.create(context);
     _viewModel.init();
   }
 
@@ -70,24 +56,24 @@ class _ViewModelProviderState<T extends ViewModel>
 
   @override
   Widget build(BuildContext context) {
-    return _ViewModelInheritedWidget<T>(
+    return _ViewModelScope<T>(
       viewModel: _viewModel,
       child: widget.child,
     );
   }
 }
 
-class _ViewModelInheritedWidget<T extends ViewModel> extends InheritedWidget {
-  const _ViewModelInheritedWidget({
-    super.key,
+class _ViewModelScope<T extends ViewModel> extends InheritedWidget {
+  const _ViewModelScope({
+    Key? key,
     required this.viewModel,
-    required super.child,
-  });
+    required Widget child,
+  }) : super(key: key, child: child);
 
   final T viewModel;
 
   @override
-  bool updateShouldNotify(_ViewModelInheritedWidget<T> oldWidget) {
-    return oldWidget.viewModel != viewModel;
+  bool updateShouldNotify(_ViewModelScope<T> oldWidget) {
+    return viewModel != oldWidget.viewModel;
   }
 }
