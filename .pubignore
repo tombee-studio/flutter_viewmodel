@@ -1,0 +1,9 @@
+# Files and directories excluded from the published package.
+.dart_tool/
+.idea/
+.vscode/
+build/
+example/build/
+example/.dart_tool/
+coverage/
+*.iml
