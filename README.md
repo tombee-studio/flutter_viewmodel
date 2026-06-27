@@ -1,15 +1,19 @@
-# flutter_viewmodel
+# task-management
 
-A Flutter package that introduces the ViewModel pattern for Flutter applications, inspired by Android's Architecture Components ViewModel. It provides a clean way to separate business logic from UI, manage state, and survive widget rebuilds.
+A Django-based task management application, packaged for distribution on PyPI.
 
 ## Features
 
-- **ViewModel lifecycle management**: ViewModels are created once and persist across widget rebuilds.
-- **Automatic disposal**: ViewModels are disposed when they are no longer needed.
-- **Clean separation of concerns**: Keep business logic out of your widgets.
-- **Reactive UI updates**: Uses `ChangeNotifier` to notify widgets of state changes.
+- **Task tracking**: Create, update, and organize tasks.
+- **Django integration**: Plug the app into any Django project.
+- **Reusable package**: Installable via `pip` for easy reuse across projects.
 
-## Getting Started
+## Requirements
 
-Add `flutter_viewmodel` to your `pubspec.yaml`:
+- Python >= 3.9
+- Django >= 4.2, < 5.0
+
+## Installation
+
+Install from PyPI:
 
