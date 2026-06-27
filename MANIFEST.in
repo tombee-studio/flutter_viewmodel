@@ -1,6 +1,9 @@
 include README.md
-include LICENSE
 include CHANGELOG.md
-recursive-include task_management *.html *.txt *.css *.js *.png *.jpg *.svg
+include LICENSE
+include pyproject.toml
+
+recursive-include task_management *.py
+
 global-exclude *.py[cod]
 global-exclude __pycache__
