@@ -12,7 +12,7 @@ requires-python = ">=3.9"
 authors = [
     { name = "task-management contributors" },
 ]
-keywords = ["django", "task", "management", "tasks", "todo"]
+keywords = ["django", "task", "management", "task-management"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
@@ -37,7 +37,6 @@ dependencies = [
 Homepage = "https://github.com/your-org/task-management"
 Repository = "https://github.com/your-org/task-management"
 Changelog = "https://github.com/your-org/task-management/blob/main/CHANGELOG.md"
-Issues = "https://github.com/your-org/task-management/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -47,5 +46,8 @@ dev = [
     "pytest-django",
 ]
 
-[tool.setuptools.packages.find]
-include = ["task_management*"]
+[tool.setuptools]
+packages = ["task_management"]
+
+[tool.setuptools.package-data]
+task_management = ["py.typed"]
