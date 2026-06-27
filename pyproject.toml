@@ -5,17 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "task-management"
 version = "0.0.1"
-description = "A Django-based task management application."
+description = "A Django-based task management application, packaged for distribution on PyPI."
 readme = "README.md"
 license = { file = "LICENSE" }
 requires-python = ">=3.9"
 authors = [
-    { name = "Task Management Team", email = "maintainers@example.com" }
+    { name = "Task Management Maintainers" },
 ]
-maintainers = [
-    { name = "Task Management Team", email = "maintainers@example.com" }
-]
-keywords = ["django", "task", "management", "todo"]
+keywords = ["django", "task", "management", "tasks", "todo"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
@@ -31,7 +28,6 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Office/Business :: Scheduling",
 ]
 dependencies = [
     "Django>=4.2,<5.0",
@@ -39,16 +35,17 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "build>=1.0",
-    "pytest>=7.0",
-    "pytest-django>=4.5",
+    "build",
+    "twine",
+    "pytest",
+    "pytest-django",
 ]
 
 [project.urls]
 Homepage = "https://github.com/your-org/task-management"
+Documentation = "https://github.com/your-org/task-management#readme"
 Repository = "https://github.com/your-org/task-management"
 Changelog = "https://github.com/your-org/task-management/blob/main/CHANGELOG.md"
-Issues = "https://github.com/your-org/task-management/issues"
 
 [tool.setuptools.packages.find]
 include = ["task_management*"]
