@@ -5,6 +5,10 @@
 /// and survive widget rebuilds.
 library flutter_viewmodel;
 
-export 'src/view_model.dart';
-export 'src/view_model_provider.dart';
-export 'src/view_model_builder.dart';
+export 'src/version.dart';
+
+/// The current version of the `flutter_viewmodel` package.
+///
+/// Exposed at the top level of the library so consumers can reference it as:
+///
+/// 

@@ -13,3 +13,9 @@ A Flutter package that introduces the ViewModel pattern for Flutter applications
 
 Add `flutter_viewmodel` to your `pubspec.yaml`:
 
+
+## Version
+
+The package exposes its version at the top level of the library so you can
+reference it at runtime:
+
